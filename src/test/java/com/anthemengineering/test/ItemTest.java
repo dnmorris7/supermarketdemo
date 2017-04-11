@@ -15,13 +15,13 @@ public class ItemTest {
 	public void setUpBeforeClass() throws Exception {
 
 		test = new Item("0001");
-		//System.out.println(test.print());
-		System.out.println(test.print());
 		test2 = new Item("0002");
-String fourdigit = String.format("%04d", 1);
-
-System.out.println(fourdigit);
-	}
+		// System.out.println(test.print());
+		// System.out.println(test.print());
+		/*
+		 * String fourdigit = String.format("%04d", 1);
+		 * System.out.println(fourdigit);
+		 */ }
 
 	@Before
 	public void setUp() throws Exception {
@@ -44,21 +44,22 @@ System.out.println(fourdigit);
 	}
 
 	@Test
-	public void testID(){
-	String expected =	test.getId();
-	boolean sameId=  expected.equals("0001");
-	assertTrue(sameId);
+	public void testID() {
+		String expected = test.getId();
+		String expected2 = test2.getId();
+		boolean sameId = expected.equals("0001");
+		boolean sameId2 = expected2.equals("0002");
+		assertTrue(sameId && sameId2);
 	}
-	
+
 	@Test
-	public void testPrice(){
+	public void testPrice() {
 		double expected = test.getPrice();
-		
-		assertSame(expected, 2.50);
-		
+
+		assertTrue(expected == 2.50);
+
 	}
-	
-	@Test
+
 	public void testPrint() {
 		String expected = "[id: 0001 | name: Apple | price: 2.49]";
 		boolean samePrint = expected.equals(test.print());
