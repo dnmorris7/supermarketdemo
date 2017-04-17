@@ -2,32 +2,34 @@ package com.anthemengineering.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
 
-import com.anthemengineering.model.Item;
+
 import com.anthemengineering.model.ShoppingCart;
 
-public class ShoppingCartTest {
-	private ShoppingCart cart;
+public class ShoppingCartTest extends ArrayList{
+	public ShoppingCart cart;
 	
+	/*@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		String testString = "[id: 0001 | name: Apple | price: $2.5]" +"\r"+"[id: 0002 | name: Banana | price: $0.49]";
+		ShoppingCart cart = new ShoppingCart();
+	}*/
+
+	
+
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		String testString = "[id: 0001 | name: Apple | price: $2.5]" +"\r"+"[id: 0002 | name: Banana | price: $0.49]";
+	 cart = new ShoppingCart();
 		
-	}
-
-	
-
-	@Before
-	public void setUp() throws Exception {
-		ShoppingCart cart = new ShoppingCart();
 		cart.add("0001");
 		cart.add("0002");
-		double retailPrice = cart.retailPrice();//cart.itemList.stream().mapToDouble(i -> i.getPrice()).sum();
-		System.out.println(retailPrice);
+		
 	}
 
 	@After
@@ -35,15 +37,11 @@ public class ShoppingCartTest {
 	}
 
 	@Test
-	public void cartTotal() {
-		double expected = cart.retailPrice();	
-		assertSame(expected, 2.99);
-	}
+	public void cartSaleTotal() {
 	
-	public void addTwoItemsTest() {
-		
-		
-		//assert(test.print(), "0001 | Apple | 2.49" + "\r" + "0001 | Banana | 0.49");
+		double expected = cart.retailPrice();	
+		System.out.println(expected);
+		assertTrue(expected==2.99);
 	}
 
 }

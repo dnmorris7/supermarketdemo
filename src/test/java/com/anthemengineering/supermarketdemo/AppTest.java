@@ -3,25 +3,48 @@ package com.anthemengineering.supermarketdemo;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.anthemengineering.model.Item;
+import com.anthemengineering.model.Sale;
+import com.anthemengineering.model.SaleMediator;
+import com.anthemengineering.model.SaleRetail;
 import com.anthemengineering.model.ShoppingCart;
-
-
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AppTest {
 	public static void main(String[] args) {
 String appleTestId = "0001";
 String banannaTestId = "0002";
-
+String toothbrushTestId = "0003"; 
+String wineTestId = "0004";
+String chipsTestId = "0005";
+String salsaTestId = "0006";
 		ShoppingCart cart = new ShoppingCart();
-		cart.add(appleTestId);
+		SaleMediator sales = new SaleMediator(cart);
+		sales.addSale(toothbrushTestId, 3);
+	//	sales.addSaleBundle(chipsTestId, salsaTestId);
+		System.out.println("Quantity for toothbrush sale: "+ sales.getSale(toothbrushTestId));
+		//System.out.println("Sale Matches for Bundle: "+ sales.getSale(chipsTestId, salsaTestId));
+		
+		cart.add(toothbrushTestId);
+		cart.printData();
+		cart.add(toothbrushTestId);
+		cart.printData();
+//		sales = new SaleMediator(cart);
+		cart.add(toothbrushTestId, sales);
+		//cart.add(toothbrushTestId);
+		cart.printData();
+		cart.add(toothbrushTestId);
+		cart.printData();
+		/*cart.add(appleTestId);
 		cart.add(banannaTestId);
+		cart.add(chipsTestId);
+		cart.add(salsaTestId);
 		//cart.add("0001");
 		//cart.add("0002");
-		double retailPrice = cart.itemList.stream().mapToDouble(i -> i.getPrice()).sum();
+		
+//		double retailPrice = cart.itemList.stream().mapToDouble(i -> i.getPrice()).sum();
 		// String cartString = cart.itemList.stream().filter(pred).forEach(i ->
 		// i.getName());
 		// cart.itemList.forEach(i -> System.out.println(i.getName()));
@@ -52,12 +75,24 @@ String banannaTestId = "0002";
 		//cart.printName();
 		
 		//Iterator iterator = cart.itemList.iterator();
-		/*
+		
 		 * while( iterator.hasNext());{ ArrayList check = (ArrayList)
 		 * iterator.next(); print(cart.itemList.)
 		 * if(cart.itemList.contains(test)) System.out.println(1); }
-		 */
+		 
 
 		// System.out.println(cartString);
+		System.out.println("==Third Item Add Iteration== \r");
+
+		cart.printData();
+		cart.add(wineTestId);
+		
+		cart.add(chipsTestId);
+		cart.add(salsaTestId);
+		cart.printData();
+		if(cart.itemList.contains(new Item(salsaTestId))
+			System.out.println("Salsa Found");
+
+cart.itemList.lastIndexOf(salsaTestId);		*/
 	}
 }

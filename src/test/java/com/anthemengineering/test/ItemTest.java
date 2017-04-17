@@ -7,21 +7,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.anthemengineering.model.Item;
+import com.anthemengineering.model.Sale;
 
 public class ItemTest {
-	public Item test, test2;
+	public Item test, test2, test3;
 
 	@Before
 	public void setUpBeforeClass() throws Exception {
 
-		test = new Item("0001");
-		test2 = new Item("0002");
+		test = new Item("0001"); // apple
+		test2 = new Item("0002"); // banana
+		test3 = new Item("0004");
 		// System.out.println(test.print());
 		// System.out.println(test.print());
 		/*
 		 * String fourdigit = String.format("%04d", 1);
 		 * System.out.println(fourdigit);
-		 */ }
+		 */
+
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -66,4 +70,31 @@ public class ItemTest {
 		assertTrue(samePrint);
 	}
 
+	@Test
+	public void testSale() {
+		double expected = test.getSalePrice();
+
+		assertTrue(expected == 2.50);
+
+	}
+
+	@Test
+	// testing that the Sale object returns the right price
+	public void testSalePrice1() {
+		double expected = test.getSalePrice();
+
+		assertTrue(expected == 2.50);
+
+	}
+
+	@Test
+	// testing that the Sale object returns the right price
+	public void testSalePrice2() {
+		double expectedPrice = test3.getPrice();
+		double expectedSale = test3.getSalePrice();
+		System.out.println("PreTax (Wine): $" + test3.getPrice());
+		System.out.println("PostTax (Wine): $" + expectedSale);
+		assertTrue(expectedPrice == 15.49 && expectedSale == 16.92);
+
+	}
 }
